@@ -43,3 +43,25 @@ int find(const vector<int> & v,int index)
             
     return 1 + find(v,index);
 }
+int main()
+{
+    int n = 0;//元素个数
+    int num = 0;
+    cin >> n;
+    
+    vector<int> vc;
+    vc.reserve(n);//开辟空间
+    size_t i = 0;//位置
+    for(int i = 0;i < n; i++)
+    {
+        int tmp;
+        
+        cin >> tmp;
+        vc.push_back(tmp);
+    }
+    num = find(vc, 0);
+    cout << num << endl;
+    
+    
+    return 0;
+}
