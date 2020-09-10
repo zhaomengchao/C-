@@ -1,0 +1,41 @@
+/*
+对于一个给定的链表，返回环的入口节点，如果没有环，返回null
+拓展：
+你能给出不利用额外空间的解法么？
+思路：首先进行快慢指针找到相遇点，然后建立新的指针从链表头开始，然后另一个节点（相遇节点）同时开始便利
+
+
+*/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode* fast = head;
+        ListNode* slow = head;
+         
+        while(fast && fast->next)
+        {
+            fast = fast->next->next;
+            slow = slow->next;
+             
+            if(slow == fast)//证明链表有环
+            {
+                ListNode* slow1 = head;//让新的节点从头开始进行遍历，当下次两个slow相遇即为环的入口
+                while(slow1 != slow)
+                {
+                    slow = slow->next;
+                    slow1 = slow1->next;
+                }
+                return slow;
+            }
+        }
+        return nullptr;
+    }
+};
